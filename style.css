@@ -19,6 +19,7 @@ header {
     align-items: center;
     position: relative;
     min-height: 600px;
+    background-image: url(images/background/possivel\ plano\ de\ fundo.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -36,10 +37,11 @@ header nav {
     padding: 0 20px;
 }
 
-header nav .brand {
+.brand {
+    margin-left: 2rem;
     font-family: 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     font-style: italic;
-    font-size: 2.0rem;
+    font-size: 2.5rem;
     background: white;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -49,13 +51,14 @@ header nav .brand {
     text-decoration: none;
 }
 
-header nav .brand:hover {
+.brand:hover {
     color: lightgrey;
     -webkit-background-clip: none;
     -webkit-text-fill-color: rgb(252, 108, 53);
 }
 
 header nav .menu {
+    margin-right: 2rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -63,11 +66,13 @@ header nav .menu {
 }
 
 header nav .menu-item{
+    font-size: 1.2rem;
     text-decoration: none;
     color: white;
 }
 
 header nav .menu .menu-item:hover {
+    transform: translateY(-0.1rem);
     color:yellow;
 }
 header .content {
@@ -88,7 +93,7 @@ h1, h3 {
     margin-bottom: 0.5rem;
 }
 
-header h1 {
+header h1 {margin-top: 8rem;
     font-size: 2.5rem;
     text-transform: uppercase;
     font-weight: 400;
@@ -116,13 +121,13 @@ header::after {
     background-color: hsla(220, 0%, 0%, 0.2);
 }
 
-.button {
+header .button {
     margin-top: 0.5rem;
     font-size: 1.4rem;
     font-weight: 400;
     display: inline-block;
     min-width: 300px;
-    background:orange;
+    background-color: orange;
     padding: 1.5rem;
     text-align: center;
     border-radius: 5px;
@@ -184,7 +189,7 @@ section:nth-child(odd) {
 
 section:nth-child(even) {
     color: #2e749d;
-    background: wheat;
+    background: rgb(255, 253, 158);
 }
 
 .quemSomos {
@@ -192,7 +197,7 @@ section:nth-child(even) {
 }
 .quemSomos h1 {
     font-weight: 400;
-    font-size: 1.6rem;
+    font-size: 2rem;
 }
 .quemSomos .container {
     display: grid;
