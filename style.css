@@ -1,0 +1,286 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: white;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    min-height: 600px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-color: hsl(220, 30%, 40%);
+    background-blend-mode: multiply;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    z-index: 1;
+    padding: 0 20px;
+}
+
+header nav .brand a {
+    font-size: 2.5rem;
+    background: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+header nav .brand a:hover {
+    color: lightgrey;
+    -webkit-background-clip: none;
+    -webkit-text-fill-color: rgb(252, 108, 53);
+}
+
+header nav .menu {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 300px;
+}
+header nav .menu .menu-item a {
+    text-decoration: none;
+    color: white;
+}
+
+header nav .menu .menu-item a:hover {
+    color: rgb(50, 216, 218);
+}
+header .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    text-align: center;
+}
+
+header .content img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+header .content .badges {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+}
+header h1 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    font-weight: 400;
+    background: white;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+header h3 {
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: hsla(220, 0%, 0%, 0.2);
+}
+
+header .button {
+    font-size: 1rem;
+    font-weight: 400;
+    display: inline-block;
+    min-width: 300px;
+    background:orange;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 5px;
+    /* border: 3px solid white; */
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 600px;
+    padding: 30px;
+}
+
+section .items {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
+section .items .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    min-height: 350px;
+}
+
+section .items img {
+    max-width: 100%;
+}
+section h1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+section .items .item h3 {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 300;
+}
+
+section:nth-child(odd) {
+        background: black;
+}
+
+section:nth-child(even) {
+    color: #2e749d;
+    background: wheat;
+}
+
+.quemSomos {
+    padding: 1rem;
+}
+.quemSomos h1 {
+    font-weight: 400;
+    font-size: 1.6rem;
+}
+.quemSomos .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1rem;
+    width: 100%;
+}
+
+.quemSomos .container .avatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+
+    object-fit: cover;
+    border-radius: 0.5rem;
+}
+
+.quemSomos .container .avatar figure {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid white;
+}
+
+.quemSomos .container .avatar img {
+    width: 100%;
+}
+.quemSomos .container .avatar .content {
+    text-align: center;
+}
+.quemSomos .container .avatar .content .head {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.quemSomos .container .avatar .content .subhead {
+    font-size: 1rem;
+}
+
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 50px 100px;
+    min-height: 250px;
+    background: black;
+}
+
+footer .content {
+    text-align: center;
+}
+footer .content h1 {
+    font-size: 1.6rem;
+    font-weight: 300;
+}
+footer .social {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    width: 300px;
+}
+footer .social img {
+    width: 50px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 425px) {
+    header .content {
+        padding: 10px;
+    }
+
+    header nav .menu {
+        display: none;
+    }
+
+    header .content h1 {
+        font-size: 1.4rem;
+    }
+    header .content .badges {
+        flex-direction: column;
+    }
+
+    section .items {
+        grid-template-columns: 1fr;
+    }
+
+    section .items .item {
+        min-height: auto;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+
+    footer .social {
+        padding-top: 50px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
