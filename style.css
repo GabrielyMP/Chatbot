@@ -258,6 +258,8 @@ footer .content {
 footer .content h1 {
     font-size: 1.6rem;
     font-weight: 300;
+    font-family: 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+    font-style: italic;
 }
 footer .social {
     display: flex;
