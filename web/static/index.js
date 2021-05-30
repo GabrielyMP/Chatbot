@@ -2,27 +2,66 @@ chatElement = document.getElementById('chat');
 messageElement = document.getElementById('message');
 buttonElement = document.getElementById('send');
 
+function createMessageBalloon(content, direction) {
+    const messageBalloon = document.createElement('div');
+    const messageBalloonContent = document.createTextNode(content);
+    
+    for(className of ['message-balloon', direction]) {
+        messageBalloon.classList.add(className);
+    }
+
+    messageBalloon.appendChild(messageBalloonContent);
+
+    return messageBalloon;
+}
+
+function addUserResponse(content) {
+    const messageWrapper = chatElement.children[0];
+    
+    const messageBalloon = createMessageBalloon(content, 'right');
+
+    messageWrapper.appendChild(messageBalloon);
+}
+
+function addBotResponse(content) {
+    const messageWrapper = chatElement.children[0];
+    
+    const messageBalloon = createMessageBalloon(content, 'left');
+
+    messageWrapper.appendChild(messageBalloon);
+}
+
+function scrollDownToLast() {
+    const messages = document.querySelectorAll('.message-balloon');
+
+    const lastMessage = messages[messages.length - 1];
+
+    chatElement.scrollTop = lastMessage.offsetTop;
+}
+
 buttonElement.addEventListener('click', function(e) {
-    console.log('Send message');
+    const content = messageElement.value;
 
-    const messageContent = messageElement.value;
-
-    if(messageContent == '') {
+    if(content == '') {
         console.log('messageElement is empty');
         return;
     }
 
-    const request = new Request('http://localhost:5000/');
-    request.method = 'POST';
+    addUserResponse(content);
 
-    fetch(request)
-    .then(response => {
-        console.log('recebeu');
-        console.log(response.json())
+    fetch('http://localhost:5000/', { 
+        method: 'POST', 
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ content })
     })
-    .catch(err => console.log(err));
+    .then(res => res.json())
+    .then(data => {
+        addBotResponse(data.content);
+        scrollDownToLast();
+    });
 
     messageElement.value = '';
 });
-
-

@@ -14,10 +14,6 @@ def index():
 
         request_message = json['content']
 
-        print(1)
-        print(request_message)
-        print(2)
-
         # Chatbot vai processar a mensagem aqui
 
         response_message = 'Bla bla bla. Você fala demais, amigo!'
