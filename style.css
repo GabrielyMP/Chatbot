@@ -183,8 +183,8 @@ section:nth-child(odd) {
 }
 
 section:nth-child(even) {
-    color: #2e749d;
-    background: rgb(255, 253, 158);
+    color: #350197;
+    background: rgb(253, 168, 135);
 }
 
 #presentation{
