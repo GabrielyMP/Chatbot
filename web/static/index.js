@@ -49,7 +49,7 @@ buttonElement.addEventListener('click', function(e) {
 
     addUserResponse(content);
 
-    fetch('http://namaria-chatbot.herokuapp.com/', { 
+    fetch('http://localhost:5000/', { 
         method: 'POST', 
         headers: {
             'Accept': 'application/json',

@@ -32,8 +32,4 @@ def get_location_for_key(search_text) :
 
     # Resposta JSON da chamada
     data = r.json()
-    place_data = data['result']
-    print("Informações sobre o local:")
-    print("Nome: {}".format(place_data['name']))
-    print("Endereço: {}".format(place_data['formatted_address']))
-    print("Tipo: {}".format(place_data['types']))
+    return data['result']

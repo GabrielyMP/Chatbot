@@ -4,8 +4,63 @@
 # sintam-se a vontade pra desenvolver melhor isso daí, pq esse diálogo tá uma bosta
 
 import random
+import re
 from apicaller import get_location_for_key
 
+
+def read_foods():
+    foods = []
+    try:
+        with open('foods.txt', 'r') as file:
+            foods = [food.rstrip() for food in file.readlines()]
+    except IOError:
+        print("Could not open foods txt file")
+    return foods
+
+
+def read_chatbot_answers():
+    answers = []
+    try:
+        with open('chatbot.txt', 'r') as file:
+            answers = [answer.rstrip() for answer in file.readlines()]
+    except IOError:
+        print("Could not open chatbot answers txt file")
+    return answers
+
+
+def search_answer_by_message(message: str) -> str:
+    message = message.rstrip()
+
+    foods = read_foods()
+    for food in foods:
+        if food in [word.lower() for word in message.split(' ')]:
+            return food
+    
+    chatbot_answers = read_chatbot_answers()
+    for answer in chatbot_answers:
+        for word in answer.split(' '):
+            for word2 in message.split(' '):
+                if word == word2.lower():
+                    return answer
+
+    raise SyntaxError
+
+
+def process_message(message: str) -> str:
+    response_message = ''
+
+    try:
+        response_message = search_answer_by_message(message)
+
+        for food in read_foods():
+            if response_message == food:
+                response_message = get_location_for_key(food)['name']
+    except Exception as e:
+        response_message = "Não entendi o que você disse..."
+
+    return response_message
+
+'''
 texts = [
     [ 
         "Que delícia!\n",
@@ -34,3 +89,4 @@ print(texts[0][random.randint(0,3)])
 print(texts[1][random.randint(0,3)])
 
 get_location_for_key(key_word)
+'''

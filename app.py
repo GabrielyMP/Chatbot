@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS, cross_origin
 
+import chatbot
+
 app = Flask(__name__, static_url_path='', static_folder='web/static', template_folder='web')
 
 cors = CORS(app)
@@ -14,9 +16,7 @@ def index():
 
         request_message = json['content']
 
-        # Chatbot vai processar a mensagem aqui
-
-        response_message = 'Bla bla bla. Você fala demais, amigo!'
+        response_message = chatbot.process_message(request_message)
 
         return jsonify(content=response_message)
 
