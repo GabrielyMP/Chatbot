@@ -16,9 +16,7 @@ def index():
 
         request_message = json['content']
 
-        # response_message = chatbot.process_message(request_message)
-
-        request_message = ''
+        response_message = chatbot.process_message(request_message)
 
         return jsonify(content=response_message)
 
