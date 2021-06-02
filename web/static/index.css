@@ -23,9 +23,10 @@ html, body {
 }
 
 .title {
+    background-color: #CEA140;
     text-align: center;
     margin: 2rem 0;
-    font-family: 'Helvetica Neue', sans-serif;
+    font-family: 'Segoe UI', Roboto, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     font-size: 4rem;
     font-weight: 400;
     color: #1b1b1b;
