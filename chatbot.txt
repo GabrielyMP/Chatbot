@@ -1,12 +1,14 @@
-ola ser humano! Sou Namaria, um bot feito exclusivamente para lhe ajudar a escolher um restaurante!
+oi! Sou Namaria, um bot feito exclusivamente para lhe ajudar a escolher um restaurante!
 ola
 oi
 bom dia
 boa tarde
 boa noite
-tudo sim e com voce
-o que você gostaria de comer ?
-do que você tem fome hoje ?
+tudo sim e com voce?
+o que você gostaria de comer?
+quer fazer seu pedido?
+do que você tem fome hoje?
+ótima escolha!
 bye!
 tchau tchau!
 adeus
