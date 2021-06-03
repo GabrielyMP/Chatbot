@@ -125,14 +125,22 @@ def search_answer_by_key(user_message: str, coordinates: dict = None):
             return answer
 
     if path.exists(food_name_file_path):
-        for option in ['Sim', 'Nao', 'Não']:
-            match = search(f'.*{option}.*', user_message, IGNORECASE)
+        food_name = None
+        try:
+            with open(food_name_file_path, "r") as file:
+                food_name = file.read()
+        except IOError:
+            print("Could not read food name txt")
+            
+        if food_name != '':
+            for option in ['Sim', 'Nao', 'Não']:
+                match = search(f'.*{option}.*', user_message, IGNORECASE)
 
-            if not match: continue
+                if not match: continue
 
-            if option == 'Sim':
-                answer = "BUSCAR COORDENADAS"
-                return answer
+                if option == 'Sim':
+                    answer = "BUSCAR COORDENADAS"
+                    return answer
     
     if path.exists(food_name_file_path):
         food_name = None
@@ -142,12 +150,17 @@ def search_answer_by_key(user_message: str, coordinates: dict = None):
         except IOError:
             print("Could not read food name txt")
 
-        result = get_location_for_key(food_name, coordinates)
-        name, address = result['name'], result['formatted_address']
+        if food_name != '':
+            result = get_location_for_key(food_name, coordinates)
+            name, address = result['name'], result['formatted_address']
 
-        answer = "Achei um restaurante interessante pra você. Ele se chama {0}. Fica na {1}. Bon appetit!".format(name, address)
+            answer = "Achei um restaurante interessante pra você. Ele se chama {0}. Fica na {1}. Bon appetit!".format(name, address)
 
-        remove(food_name_file_path)
+            try:
+                with open(food_name_file_path, 'w') as file:
+                    file.write('')
+            except IOError:
+                print('Could not write on txt')
 
     return answer
 
