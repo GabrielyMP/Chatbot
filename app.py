@@ -14,9 +14,19 @@ def index():
     if request.method == 'POST':
         json = request.get_json()
 
+        print(json)
+
         request_message = json['content']
 
-        response_message = chatbot.process_message(request_message)
+        if request_message != 'API SENDING USER COORDINATES':
+            response_message = chatbot.process_user_message(request_message)
+        else:
+            latitude, longitude = json['coordinates'].split(' ')
+            
+            coordinates = dict()
+            coordinates['latitude'], coordinates['longitude'] = latitude, longitude
+
+            response_message = chatbot.process_user_message("Ffffff", coordinates)
 
         return jsonify(content=response_message)
 
