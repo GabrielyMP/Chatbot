@@ -50,7 +50,7 @@ buttonElement.addEventListener('click', function(e) {
     addUserResponse(content);
 
 
-    fetch('http://namaria-chatbot.herokuapp.com/', { 
+    fetch('http://localhost:5000/', { 
         method: 'POST', 
         headers: {
             'Accept': 'application/json',
@@ -60,37 +60,8 @@ buttonElement.addEventListener('click', function(e) {
     })
     .then(res => res.json())
     .then(data => {
-        if(data.content == 'BUSCAR COORDENADAS') {
-            if(navigator.geolocation) {
-                let coordinates;
-
-                navigator.geolocation.getCurrentPosition(position => {
-                    coordinates = position.coords.latitude + ' ' + position.coords.longitude
-
-                    fetch('http://namaria-chatbot.herokuapp.com/', {
-                        method: 'POST',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ content: 'API SENDING USER COORDINATES', coordinates: coordinates })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        addBotResponse(data.content);
-                        scrollDownToLast();
-                    });
-                });
-            }
-            else {
-                addBotResponse("Desculpe. O seu browser não suporta geolocalização.")
-                scrollDownToLast();
-            }
-        }
-        else {
-            addBotResponse(data.content);
-            scrollDownToLast();
-        }
+        addBotResponse(data.content);
+        scrollDownToLast();
     });
 
     messageElement.value = '';

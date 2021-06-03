@@ -65,19 +65,10 @@ chatbot_on_food_types_text_list = [
 ]
 
 
-chatbot_on_food_name_text_list = [
-    "{}!? Eu também amo!"
-]
-
-
-chatbot_ask_user_coordinates = "Contudo, para encontrar o restaurante mais próximo de você, \
-    preciso que você me forneça as suas coordenadas. Me faria a gentileza?"
-
-
 chatbot_on_exit_text = "Tudo bem. Estou aqui se você precisar!"
 
 
-def search_answer_by_key(user_message: str, coordinates: dict = None):
+def search_answer_by_key(user_message: str):
     answer = None
 
     for key in chatbot_greetings_keys:
@@ -113,63 +104,21 @@ def search_answer_by_key(user_message: str, coordinates: dict = None):
 
             if not match: continue
 
-            answer = choice(chatbot_on_food_name_text_list).format(food_name)
-            answer = answer + ' ' + chatbot_ask_user_coordinates
+            result = get_location_for_key(food_name)
 
-            try:
-                with open(food_name_file_path, 'w') as file:
-                    file.write(food_name)
-            except IOError:
-                print('Could not write on txt file')
+            name = result['name']
+            address = result['formatted_address']
 
-            return answer
-
-    if path.exists(food_name_file_path):
-        food_name = None
-        try:
-            with open(food_name_file_path, "r") as file:
-                food_name = file.read()
-        except IOError:
-            print("Could not read food name txt")
-            
-        if food_name != '':
-            for option in ['Sim', 'Nao', 'Não']:
-                match = search(f'.*{option}.*', user_message, IGNORECASE)
-
-                if not match: continue
-
-                if option == 'Sim':
-                    answer = "BUSCAR COORDENADAS"
-                    return answer
-    
-    if path.exists(food_name_file_path):
-        food_name = None
-        try:
-            with open(food_name_file_path, "r") as file:
-                food_name = file.read()
-        except IOError:
-            print("Could not read food name txt")
-
-        if food_name != '':
-            result = get_location_for_key(food_name, coordinates)
-            name, address = result['name'], result['formatted_address']
-
-            answer = "Achei um restaurante interessante pra você. Ele se chama {0}. Fica na {1}. Bon appetit!".format(name, address)
-
-            try:
-                with open(food_name_file_path, 'w') as file:
-                    file.write('')
-            except IOError:
-                print('Could not write on txt')
+            answer = "Encontrei um restaurante pra você. {0}. Fica em {1}. Bon appetit!".format(name, address)
 
     return answer
 
 
-def process_user_message(user_message: str, coordinates: dict = None) -> str:
+def process_user_message(user_message: str) -> str:
     bot_answer = ''
 
     try:
-        bot_answer = search_answer_by_key(user_message, coordinates)
+        bot_answer = search_answer_by_key(user_message)
         assert bot_answer is not None
     except Exception as error:
         print(error)
